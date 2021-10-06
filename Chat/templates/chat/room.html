@@ -1,0 +1,485 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+</head>
+<body>
+
+    <div class="container">
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card chat-app">
+                <div id="plist" class="people-list">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                             <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                       
+                    </div>
+                    <ul class="list-unstyled chat-list mt-2 mb-0">
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Vincent Porter</div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div>                                            
+                            </div>
+                        </li>
+                        <li class="clearfix active">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Aiden Chavez</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Mike Thomas</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
+                        </li>                                    
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Christian Kelly</div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> left 10 hours ago </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Monica Ward</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Dean Henry</div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="chat">
+                    <div class="chat-header clearfix">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                </a>
+                                <div class="chat-about">
+                                    <h6 class="m-b-0">{{ username }}</h6>
+                                  
+                                </div>
+                                  <!-- <label class="lastseen">Last seen: 2 hours ago</label> -->
+                            </div>
+                            <!-- <div class="col-lg-6 hidden-sm text-right">
+                                <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="chat-history">
+                        <ul id="chat-log" >
+                            <li class="sent">
+                               <!--  <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="img" width="20px" class="user-avatar-md rounded-circle" >
+                                <p>msg2</p> -->
+                            </li>
+                            <li class="replies">
+                                <!-- <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="img" width="20px" class="user-avatar-md rounded-circle" >
+                                <p>msg1</p>  -->                                  
+                            </li>                               
+                            <!-- <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">10:15 AM, Today</span>
+                                </div>
+                                <div class="message my-message">Project has been already finished and I have results to show you.</div>
+                            </li> -->
+                        </ul>
+                    </div>
+                    <div class="chat-message clearfix">
+                        <div class="input-group mb-0">
+                            <div class="input-group-prepend">
+                              
+                              <input id="chat-message-input" type="text" class="form-control"  size="50" placeholder="Enter text here...">
+                              <button id="chat-message-submit" class="submit"><span class="input-group-text"><i class="far fa-comment-alt"></i></span></button>
+                            </div>                                      
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="main-grid-container">
+                    <div id="video-container">
+                        <!-- <div><video id="local-video" style="float: left;" autoplay playsinline></video></div>
+                        <button id="btn-toggle-audio">Audio Mute</button>
+                        <button id="btn-toggle-video">Video off</button> 
+                        <button id="join-call">Call</button>  -->                   
+
+                    </div>
+                    <!-- <h2>1. Start your Webcam</h2>
+                    <div class="videos">
+                      <span>
+                        <h3>Local Stream</h3>
+                        <video id="webcamVideo" autoplay playsinline></video>
+                      </span>
+                      <span>
+                        <h3>Remote Stream</h3>
+                        <video id="remoteVideo" autoplay playsinline></video>
+                      </span>
+                    </div> -->
+                    <div>
+                    <!-- <button class="btn btn-primary btn-sm" id="startButton">Start</button> -->
+                        <video id="remoteVideo" autoplay playsinline></video>
+                        <video id="localVideo" autoplay playsinline></video>
+                            <!-- <video id="remoteVideo" autoplay playsinline></video> -->
+                        <button class="btn btn-success btn-sm" id="callButton">Call</button>
+                        <button class="btn btn-danger btn-sm" id="hangupButton">Hang Up</button>
+
+                    </div>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'reconnecting-websocket.js' %}"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script>
+        var roomName = {{ room_name }};
+        var username = {{ username }};
+
+        var JoinCall = document.querySelector('#join-call');
+
+        let localStream;
+        let remoteStream;
+
+        let localPeerConnection;
+        let remotePeerConnection;
+        let startTime = null;
+
+        const offerOptions = {
+          offerToReceiveVideo: 1,
+        };
+
+        const mediaStreamConstraints = {
+            // 'video': true,
+            'audio': true
+        };
+
+        console.log(roomName)
+
+        var chatSocket = new ReconnectingWebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/chat/'
+            + roomName
+            + '/'
+        );
+
+        chatSocket.onopen = function(e){
+            fetchMessages();
+        }
+
+        chatSocket.onmessage = function(e) {
+
+            console.log("here")
+            var data = JSON.parse(e.data);
+
+            if (data['command'] === 'messages'){
+                for (let i=0; i<data['messages'].length; i++){
+                    createMessage(data['messages'][i]);
+                }
+            } else if(data['command'] === 'new_message') {
+                createMessage(data['message']);
+            }
+            // var message = data['message'];
+            
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            var messageInputDom = document.querySelector('#chat-message-input');
+            var message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'command':'new_message',
+                'from': username,
+                'room': roomName
+            }));
+            messageInputDom.value = '';
+        };
+
+        function fetchMessages(){
+            chatSocket.send(JSON.stringify({
+                'message':'fetch msg',
+                'command':'fetch_messages',
+                'from':username,
+                'room': roomName
+            }))
+        }
+
+        function createMessage(data){
+            var author = data['author'];
+            var msgListTag = document.createElement('li');
+            var uTag = document.createElement('p');
+            var pTag = document.createElement('p');
+            
+            pTag.textContent = data.content;
+            uTag.textContent = author+":";
+
+            if (author === username){
+                msgListTag.className = 'sent';
+            } else {
+                msgListTag.className = 'replies';
+            }
+
+            msgListTag.appendChild(uTag);
+            msgListTag.appendChild(pTag);
+
+            document.querySelector('#chat-log').appendChild(msgListTag);
+        }
+
+        var localVideoStream = new MediaStream();
+
+        const constraints = {
+            // 'video': true,
+            'audio': true
+        };
+
+        const localVideo = document.querySelector('#local-video');
+
+        var userMedia = navigator.mediaDevices.getUserMedia(constraints)
+            .then(stream => {
+                localVideoStream = stream;
+                // localVideo.srcObject = localStream;
+                // localVideo.muted = true;
+            })
+            .catch(error => {
+                console.log('Error accessing media devices.', error); 
+            })
+
+        // calling feature
+
+
+        // JoinCall.onclick = function(e) {
+
+        //     sendSignal('new-peer',{}) 
+
+        //     createOffer(username)           
+        // }
+
+        // function sendSignal(action,message){
+
+        //     chatSocket.send(JSON.stringify({
+        //         'message': 'message',
+        //         'command':action,
+        //         'from': username
+        //     }))
+        // }
+
+
+        // CALLING FEATURE-------------------------------------------------------------------------
+
+
+        function gotLocalMediaStream(mediaStream) {
+          // localVideo.srcObject = mediaStream;
+          localStream = mediaStream;
+          trace('Received local stream.');
+          callButton.disabled = false;  // Enable call button.
+        }
+
+        function gotRemoteMediaStream(event) {
+          const mediaStream = event.stream;
+          // remoteVideo.srcObject = mediaStream;
+          remoteStream = mediaStream;
+          trace('Remote peer connection received remote stream.');
+        }
+
+        function handleConnection(event) {
+          const peerConnection = event.target;
+          const iceCandidate = event.candidate;
+
+          if (iceCandidate) {
+            const newIceCandidate = new RTCIceCandidate(iceCandidate);
+            // const otherPeer = getOtherPeer(peerConnection);
+
+            // otherPeer.addIceCandidate(newIceCandidate)
+            //   .then(() => {
+            //     handleConnectionSuccess(peerConnection);
+            //   }).catch((error) => {
+            //     handleConnectionFailure(peerConnection, error);
+            //   });
+
+            trace(`ICE candidate:\n` +
+                  `${event.candidate.candidate}.`);
+          }
+        }
+
+        // Logs that the connection succeeded.
+        function handleConnectionSuccess(peerConnection) {
+          trace(`addIceCandidate success.`);
+        };
+
+        // Logs that the connection failed.
+        function handleConnectionFailure(peerConnection, error) {
+          trace(` failed to add ICE Candidate:\n`+
+                `${error.toString()}.`);
+        }
+
+        // Logs changes to the connection state.
+        function handleConnectionChange(event) {
+          const peerConnection = event.target;
+          console.log('ICE state change event: ', event);
+          trace(`ICE state: ` +
+                `${peerConnection.iceConnectionState}.`);
+        }
+
+        function setLocalDescriptionSuccess(peerConnection) {
+          setDescriptionSuccess(peerConnection, 'setLocalDescription');
+        }
+
+        function setSessionDescriptionError(error) {
+          trace(`Failed to create session description: ${error.toString()}.`);
+        }
+
+        function setDescriptionSuccess(peerConnection, functionName) {
+          // const peerName = getPeerName(peerConnection);
+          trace(`started.`);
+        }
+
+
+        function createdOffer(description) {
+          trace(`Offer from localPeerConnection:\n${description.sdp}`);
+
+          trace('localPeerConnection setLocalDescription start.');
+          localPeerConnection.setLocalDescription(description)
+            .then(() => {
+              setLocalDescriptionSuccess(localPeerConnection);
+            }).catch(setSessionDescriptionError);
+
+          trace('remotePeerConnection setRemoteDescription start.');
+          remotePeerConnection.setRemoteDescription(description)
+            .then(() => {
+              setRemoteDescriptionSuccess(remotePeerConnection);
+            }).catch(setSessionDescriptionError);
+
+          trace('remotePeerConnection createAnswer start.');
+          remotePeerConnection.createAnswer()
+            .then(createdAnswer)
+            .catch(setSessionDescriptionError);
+        }
+
+        // Logs answer to offer creation and sets peer connection session descriptions.
+        function createdAnswer(description) {
+          trace(`Answer from remotePeerConnection:\n${description.sdp}.`);
+
+          trace('remotePeerConnection setLocalDescription start.');
+          remotePeerConnection.setLocalDescription(description)
+            .then(() => {
+              setLocalDescriptionSuccess(remotePeerConnection);
+            }).catch(setSessionDescriptionError);
+
+          trace('localPeerConnection setRemoteDescription start.');
+          localPeerConnection.setRemoteDescription(description)
+            .then(() => {
+              setRemoteDescriptionSuccess(localPeerConnection);
+            }).catch(setSessionDescriptionError);
+        }
+
+        function setRemoteDescriptionSuccess(peerConnection) {
+          setDescriptionSuccess(peerConnection, 'setRemoteDescription');
+        }
+
+        const callButton = document.getElementById('callButton');
+        const hangupButton = document.getElementById('hangupButton');
+        
+        callButton.addEventListener('click', callAction);
+        hangupButton.addEventListener('click', hangupAction);
+
+        function callAction() {
+          callButton.disabled = true;
+          hangupButton.disabled = false;
+
+          trace('Starting call.');
+          startTime = window.performance.now();
+
+          // Get local media stream tracks.
+          // const videoTracks = localStream.getVideoTracks();
+          const audioTracks = localVideoStream.getAudioTracks();
+          // if (videoTracks.length > 0) {
+          //   trace(`Using video device: ${videoTracks[0].label}.`);
+          // }
+          if (audioTracks.length > 0) {
+            trace(`Using audio device: ${audioTracks[0].label}.`);
+          }
+
+          const servers = null;  // Allows for RTC server configuration.
+
+          // Create peer connections and add behavior.
+          localPeerConnection = new RTCPeerConnection(servers);
+          trace('Created local peer connection object localPeerConnection.');
+
+          localPeerConnection.addEventListener('icecandidate', handleConnection);
+          localPeerConnection.addEventListener(
+            'iceconnectionstatechange', handleConnectionChange);
+
+          remotePeerConnection = new RTCPeerConnection(servers);
+          trace('Created remote peer connection object remotePeerConnection.');
+
+          remotePeerConnection.addEventListener('icecandidate', handleConnection);
+          remotePeerConnection.addEventListener(
+            'iceconnectionstatechange', handleConnectionChange);
+          remotePeerConnection.addEventListener('addstream', gotRemoteMediaStream);
+
+          // Add local stream to connection and create offer to connect.
+          localPeerConnection.addStream(localVideoStream);
+          trace('Added local stream to localPeerConnection.');
+
+          trace('localPeerConnection createOffer start.');
+          localPeerConnection.createOffer(offerOptions)
+            .then(createdOffer).catch(setSessionDescriptionError);
+        }
+
+        function hangupAction() {
+          localPeerConnection.close();
+          remotePeerConnection.close();
+          localPeerConnection = null;
+          remotePeerConnection = null;
+          hangupButton.disabled = true;
+          callButton.disabled = false;
+          trace('Ending call.');
+        }
+
+        function trace(text) {
+          text = text.trim();
+          const now = (window.performance.now() / 1000).toFixed(3);
+
+          console.log(now, text);
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card chat-app">
+                <div id="plist" class="people-list" style="margin-left:400px;">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                             <input type="text" class="form-control" placeholder="Search...">
+                        </div>
+                       
+                    </div>
+                    <ul class="list-unstyled chat-list mt-2 mb-0" id="chat-room">
+                        {% for p in profile %}
+                        <li class="clearfix">
+                            <img src="{{ p.image.url }}" alt="avatar">
+                            <div class="about" >
+                                <div class="name" >
+                                    <a href="{% url 'chatRoomName' id=p.user.id %}"><label>{{p.name}}</label></a>
+                                </div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div>                                            
+                            </div>
+                        </li>
+                        {% endfor %}
+                        <!-- <li class="clearfix active">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Aiden Chavez</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Mike Thomas</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
+                        </li>                                    
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Christian Kelly</div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> left 10 hours ago </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Monica Ward</div>
+                                <div class="status"> <i class="fa fa-circle online"></i> online </div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar">
+                            <div class="about">
+                                <div class="name">Dean Henry</div>
+                                <div class="status"> <i class="fa fa-circle offline"></i> offline since Oct 28 </div>
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+                <!-- <div class="chat">
+                    <div class="chat-header clearfix">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
+                                </a>
+                                <div class="chat-about">
+                                    <h6 class="m-b-0">{{ username }}</h6>
+                                  
+                                </div>
+                                  <label class="lastseen">Last seen: 2 hours ago</label>
+                            </div> -->
+                            <!-- <div class="col-lg-6 hidden-sm text-right">
+                                <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="chat-history">
+                        <ul id="chat-log" >
+                            <li class="sent">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="img" width="20px" class="user-avatar-md rounded-circle" >
+                                <p>msg2</p> 
+                            </li>
+                            <li class="replies">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="img" width="20px" class="user-avatar-md rounded-circle" >
+                                <p>msg1</p>                                   
+                            </li>                               
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">10:15 AM, Today</span>
+                                </div>
+                                <div class="message my-message">Project has been already finished and I have results to show you.</div>
+                            </li> 
+                        </ul>
+                    </div>  -->
+                    <!-- <div class="chat-message clearfix">
+                        <div class="input-group mb-0">
+                            <div class="input-group-prepend">
+                              
+                              <input id="chat-message-input" type="text" class="form-control"  size="50" placeholder="Enter text here...">
+                              <button id="chat-message-submit" class="submit"><span class="input-group-text"><i class="far fa-comment-alt"></i></span></button>
+                            </div>                                      
+                        </div>
+
+                    </div> -->
+                <!-- </div> -->
+
+
+            </div>
+            <div class="main-grid-container">
+                    <div id="video-container">
+                        <!-- <div><video id="local-video" style="float: left;" autoplay playsinline></video></div>
+                        <button id="btn-toggle-audio">Audio Mute</button>
+                        <button id="btn-toggle-video">Video off</button> 
+                        <button id="join-call">Call</button>  -->                   
+
+                    </div>
+                    <!-- <h2>1. Start your Webcam</h2>
+                    <div class="videos">
+                      <span>
+                        <h3>Local Stream</h3>
+                        <video id="webcamVideo" autoplay playsinline></video>
+                      </span>
+                      <span>
+                        <h3>Remote Stream</h3>
+                        <video id="remoteVideo" autoplay playsinline></video>
+                      </span>
+                    </div> -->
+            </div>
+            
+        </div>
+    </div>
+    </div>
+
+</body>
+</html>

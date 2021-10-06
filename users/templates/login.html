@@ -1,0 +1,116 @@
+
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+   <link rel="stylesheet" href="{% static 'css/login.css' %}">
+   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="{% static 'js/login.js' %}"></script>
+</head>
+<body>
+
+<div class="form-wrap">
+    <div class="tabs">
+      <h3 class="signup-tab"><a class="active" href="#signup-tab-content" >Sign Up</a></h3>
+      <h3 class="login-tab"><a href="#login-tab-content">Login</a></h3>
+    </div><!--.tabs-->
+
+    <div class="tabs-content">
+      <div id="signup-tab-content" class="active">
+        <form class="signup-form" action="{% url 'register' %}" method="post">
+          {% csrf_token %}
+          <input type="text" class="input" name="username" id="user_name" autocomplete="off" placeholder="Username">
+          <input type="email" class="input" name="email" id="user_email" autocomplete="off" placeholder="Email">
+          <input type="password" class="input" name="password" id="user_pass" autocomplete="off" placeholder="Password">
+          <input type="password" class="input" name="password2" id="user_pass1" autocomplete="off" placeholder="Confirm Password">
+          <input type="submit" class="button" value="Sign Up">
+        </form><!--.login-form-->
+      
+      </div><!--.signup-tab-content-->
+
+      <div id="login-tab-content">
+        <form class="login-form" action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+          <input type="text" class="input" name="username" id="user_login" autocomplete="off" placeholder="Email or Username">
+          <input type="password" class="input" name="password" id="user_pass" autocomplete="off" placeholder="Password">
+          <input type="submit" class="button" value="Login">
+        </form><!--.login-form-->
+        <div class="help-text">
+          <p><a href="#">Forget your password?</a></p>
+        </div><!--.help-text-->
+      </div><!--.login-tab-content-->
+    </div><!--.tabs-content-->
+  </div><!--.form-wrap-->
+
+
+<script type="text/javascript">
+
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+  }
+    
+  function sendHttpAsync(path, method, body) {
+        let props = {
+            method: method,
+            headers: {
+                "X-CSRFToken": getCookie("csrftoken")
+            },
+            mode: "same-origin",
+        }
+
+        if (body !== null && body !== undefined) {
+            props.body = JSON.stringify(body);
+        }
+
+        return fetch(path, props)
+            .then(response => {
+                return response.json()
+                    .then(result => {
+                        return {
+                            ok: response.ok,
+                            body: result
+                        }
+                    });
+            })
+            .then(resultObj => {    
+                return resultObj;
+            })
+            .catch(error => {
+                throw error;
+            });
+    }
+
+    function sampleSubmit(event) {
+        event.preventDefault();
+        let messageHeader = document.querySelector("#message");
+        let message = document.querySelector("#sample-input").value;
+
+        let requestBody = {
+            "message": message
+        };
+
+        sendHttpAsync("/return-message", "POST", requestBody)
+            .then(response => {
+                messageHeader.innerText = response.body.message;
+            });
+    }
+
+</script>
+
+</body>
+</html>
+
+
